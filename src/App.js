@@ -36,7 +36,7 @@ function App() {
         start: "center bottom",
         ease: "power2",
         toggleActions: "play none none",
-        markers: true,
+        // markers: true,
       },
     });
     timeline.from(
@@ -62,7 +62,7 @@ function App() {
       textRef.current,
       1.5,
       {
-        y: 150,
+        y: 200,
         ease: "Power3.easeOut",
         stagger: 0.1,
       },
@@ -75,7 +75,7 @@ function App() {
         start: "center bottom",
         ease: "power2",
         toggleActions: "play none none",
-        markers: true,
+        // markers: true,
       },
     });
     timeline2.from(
@@ -101,66 +101,56 @@ function App() {
       textRef2.current,
       1.5,
       {
-        y: 150,
+        y: 200,
         ease: "Power3.easeOut",
         stagger: 0.1,
       },
       0.5
     );
 
-    // revealRefs.current.forEach((el, index) => {
-    //   const tl2 = gsap.timeline({
-    //     scrollTrigger: {
-    //       id: `section-${index + 1}`,
-    //       trigger: el,
-    //       start: "top center+=100",
-    //       toggleActions: "play none none",
-    //       markers: true,
-    //     },
-    //   });
-    //   tl2.from(
-    //     imgConRef.current,
-    //     1.5,
-    //     {
-    //       xPercent: -100,
-    //       ease: "Power3.easeInOut",
-    //     },
-    //     0
-    //   );
-    //   tl2.from(
-    //     imgRef.current,
-    //     1.5,
-    //     {
-    //       scale: 1.75,
-    //       xPercent: 100,
-    //       ease: "Power3.easeInOut",
-    //     },
-    //     0
-    //   );
-    //   tl2.from(
-    //     textRef.current,
-    //     1.5,
-    //     {
-    //       x: -20,
-    //       opacity: 0,
-    //       ease: "Power4.easeInOut",
-    //       stagger: 0.1,
-    //     },
-    //     0.5
-    //   );
+    gsap.to(".textAnima", {
+      yPercent: -15,
+      ease: "none",
+      scrollTrigger: {
+        trigger: secRef1.current,
+        scrub: true,
+      },
+    });
 
-    // gsap.from(el, {
-    //   duration: 1,
-    //   autoAlpha: 0,
-    //   ease: "Power3.easeInOut",
-    //   scrollTrigger: {
-    //     id: `section-${index + 1}`,
-    //     trigger: el,
-    //     start: "top center+=100",
-    //     toggleActions: "play none none reverse",
-    //   },
-    // });
-    // });
+    gsap.fromTo(
+      ".imgAnima",
+      { yPercent: -15 },
+      {
+        yPercent: 15,
+        ease: "none",
+        scrollTrigger: {
+          trigger: secRef1.current,
+          scrub: true,
+        },
+      }
+    );
+
+    gsap.to(".textAnima2", {
+      yPercent: -15,
+      ease: "none",
+      scrollTrigger: {
+        trigger: secRef2.current,
+        scrub: true,
+      },
+    });
+
+    gsap.fromTo(
+      ".imgAnima2",
+      { yPercent: -15 },
+      {
+        yPercent: 15,
+        ease: "none",
+        scrollTrigger: {
+          trigger: secRef2.current,
+          scrub: true,
+        },
+      }
+    );
   }, []);
 
   return (
@@ -174,7 +164,7 @@ function App() {
           <a
             href="/"
             id="logo"
-            className="text-white text-3xl"
+            className="text-white text-3xl font-semibold"
             ref={(element) => {
               heroRef.current[0] = element;
             }}
@@ -323,7 +313,7 @@ function App() {
       <section ref={secRef1}>
         <div className="w-3/4 m-auto flex md:py-32 gap-24 justify-center items-center">
           <div className="w-1/2">
-            <div className="h-96 w-full relative overflow-hidden">
+            <div className="h-96 w-full relative overflow-hidden imgAnima">
               <figure
                 className="w-full h-full overflow-hidden relative"
                 ref={imgConRef}
@@ -338,7 +328,7 @@ function App() {
             </div>
           </div>
           <div className="w-1/2">
-            <div className="w-5/6">
+            <div className="w-5/6 textAnima">
               <div class="overflow-hidden">
                 <h2
                   className="text-5xl font-semibold text-white mb-4"
@@ -370,7 +360,7 @@ function App() {
       <section ref={secRef2}>
         <div className="w-3/4 m-auto flex md:py-32 gap-24 justify-center items-center">
           <div className="w-1/2">
-            <div className="ml-20">
+            <div className="ml-20 textAnima2">
               <div class="overflow-hidden">
                 <h2
                   className="text-5xl font-semibold text-white mb-4"
@@ -397,7 +387,7 @@ function App() {
             </div>
           </div>
           <div className="w-1/2">
-            <div className="h-96 w-full relative overflow-hidden">
+            <div className="h-96 w-full relative overflow-hidden imgAnima2">
               <figure
                 className="w-full h-full overflow-hidden relative"
                 ref={imgConRef2}
@@ -412,6 +402,10 @@ function App() {
             </div>
           </div>
         </div>
+      </section>
+
+      <section className="bg-white">
+        <div className="w-3/4 m-auto flex md:py-32 gap-24 justify-center items-center"></div>
       </section>
     </div>
   );
